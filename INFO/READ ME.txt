@@ -1,0 +1,1 @@
+En este código se muestra el código de 2 requerimientos pedidos por una guardería para almacenar a sus estudiantes con su respectiva información.
