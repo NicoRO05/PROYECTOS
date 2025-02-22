@@ -47,7 +47,7 @@ public class Guarderia {
     }
 
     public String listarMayoresDe5() {
-        ArrayList<Estudiante> mayores = new ArrayList<>(); // 🔥 Cambiado a `ArrayList`
+        ArrayList<Estudiante> mayores = new ArrayList<>();
 
         for (Estudiante estudiante : listEstudiantes) {
             if (estudiante.getEdad() > 5) {
