@@ -6,6 +6,12 @@ public class Guarderia {
     private String nit;
     private ArrayList<Estudiante> listEstudiantes;
 
+    public Guarderia(String nombre, String nit) {
+        this.nombre = nombre;
+        this.nit = nit;
+        this.listEstudiantes = new ArrayList<>();
+    }
+
     public void agregarEstudiante(Estudiante newEstudiante) {
         listEstudiantes.add(newEstudiante);
     }
@@ -16,9 +22,7 @@ public class Guarderia {
 
     public void actualizarEstudiante(Estudiante estudianteActualizar) {
         for (Estudiante indexEstudiante : listEstudiantes) {
-
             if (indexEstudiante.getDocumento().equals(estudianteActualizar.getDocumento())) {
-
                 indexEstudiante.setNombre(estudianteActualizar.getNombre());
                 indexEstudiante.setEdad(estudianteActualizar.getEdad());
                 indexEstudiante.setGenero(estudianteActualizar.getGenero());
@@ -30,37 +34,68 @@ public class Guarderia {
         }
     }
 
-    public void listarEstudiantes() {
+    public String listarEstudiantes() {
+        if (listEstudiantes.isEmpty()) {
+            return "No hay estudiantes registrados.";
+        }
+
+        StringBuilder lista = new StringBuilder("Lista de Estudiantes:\n");
+        for (Estudiante estudiante : listEstudiantes) {
+            lista.append(estudiante).append("\n");
+        }
+        return lista.toString();
+    }
+
+    public String listarMayoresDe5() {
+        ArrayList<Estudiante> mayores = new ArrayList<>(); // 🔥 Cambiado a `ArrayList`
 
         for (Estudiante estudiante : listEstudiantes) {
-            System.out.println("Estudiante " + listEstudiantes.indexOf(estudiante) + " " + estudiante);
+            if (estudiante.getEdad() > 5) {
+                mayores.add(estudiante);
+            }
         }
-    }
-    public Guarderia(String nombre, String nit) {
-        this.nombre = nombre;
-        this.nit = nit;
-        this.listEstudiantes = new ArrayList<>();
+
+        if (mayores.isEmpty()) {
+            return "No hay estudiantes mayores de 5 años.";
+        }
+
+        StringBuilder lista = new StringBuilder("Estudiantes mayores de 5 años:\n");
+        for (Estudiante estudiante : mayores) {
+            lista.append(estudiante).append("\n");
+        }
+        return lista.toString();
     }
 
-    public String getnombre () {
+    public Estudiante buscarEstudiantePorDocumento(String documento) {
+        for (Estudiante estudiante : listEstudiantes) {
+            if (estudiante.getDocumento().equals(documento)) {
+                return estudiante;
+            }
+        }
+        return null;
+    }
+
+    public String getNombre() {
         return nombre;
     }
-    public void setnombre (String nombre){
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getnit () {
+    public String getNit() {
         return nit;
     }
 
-    public void setnit (String nit){
+    public void setNit(String nit) {
         this.nit = nit;
     }
+
     public ArrayList<Estudiante> getListEstudiantes() {
         return listEstudiantes;
     }
+
     public void setListEstudiantes(ArrayList<Estudiante> listEstudiantes) {
         this.listEstudiantes = listEstudiantes;
     }
-
 }
